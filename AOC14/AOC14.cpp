@@ -7,6 +7,7 @@
 #include <map>
 #include <numeric>
 #include <limits>
+#include "../ScopeBasedTiming/ScopeBasedTimer.h"
 
 struct Instruction
 {
@@ -193,12 +194,18 @@ long long RunProgramVersionTwo(std::vector<Instruction*> instructions)
 int main()
 {
     auto instructions = GetInput("input.txt");
-    long long sumMemory = RunProgram(instructions);
+    {
+        ScopeBasedTimer timer;
+        long long sumMemory = RunProgram(instructions);
 
-    std::cout << "The sum of all memory values is: " << sumMemory << std::endl;
+        std::cout << "The sum of all memory values is: " << sumMemory << std::endl;
+    }
 
-    long long sumMatchMemory = RunProgramVersionTwo(instructions);
+    {
+        ScopeBasedTimer timer;
+        long long sumMatchMemory = RunProgramVersionTwo(instructions);
 
-    std::cout << "The sum of all memory values for version two is: " << sumMatchMemory << std::endl;
+        std::cout << "The sum of all memory values for version two is: " << sumMatchMemory << std::endl;
+    }
 }
 
