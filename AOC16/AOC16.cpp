@@ -71,7 +71,7 @@ std::tuple<std::map<std::string, std::pair<std::pair<int, int>, std::pair<int, i
     return std::make_tuple(rules, myTicket, otherTickets);
 }
 
-bool ComliesToRule(int num, std::pair<std::pair<int, int>, std::pair<int, int>> rule)
+bool CompliesWithRule(int num, std::pair<std::pair<int, int>, std::pair<int, int>> rule)
 {
     if ((num >= rule.first.first && num <= rule.first.second) || (num >= rule.second.first && num <= rule.second.second))
         return true;
@@ -92,7 +92,7 @@ int TicketScanningErrorRate(std::map<std::string, std::pair<std::pair<int, int>,
             followingRules = false;
             while (!followingRules && curRule != cend(rules))
             {
-                if (ComliesToRule(v, (*curRule).second))
+                if (CompliesWithRule(v, (*curRule).second))
                     followingRules = true;
 
                 curRule++;
@@ -129,7 +129,7 @@ std::vector<std::string> GetRuleOrder(std::map<std::string, std::pair<std::pair<
             ruleValid = true;
             for (size_t j = 0; j < otherTIckets.size(); j++)
             {
-                if (!ComliesToRule(otherTIckets[j][i], r.second))
+                if (!CompliesWithRule(otherTIckets[j][i], r.second))
                 {
                     ruleValid = false;
                     break;
